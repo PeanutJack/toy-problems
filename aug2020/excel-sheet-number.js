@@ -39,7 +39,7 @@ var excelColumnNumber = function(str) {
   for (var i = 1; i < str.length + 1; i++) {
     var letter = str[str.length - i];
     var letterVal = letters.indexOf(letter) + 1;
-    var add = (26 * (i - 1) * letterVal);
+    var add = (26 ** (i - 1) * letterVal);
     if (i === 1) {
       output = letterVal;
     } else {
@@ -49,6 +49,7 @@ var excelColumnNumber = function(str) {
   return output;
 };
 
-console.log(excelColumnNumber('A'));
-console.log(excelColumnNumber('AB'));
-console.log(excelColumnNumber('ZY'));
+console.log(excelColumnNumber('A'));   // 1
+console.log(excelColumnNumber('AB'));  // 28
+console.log(excelColumnNumber('ZY'));  // 701
+console.log(excelColumnNumber('ABC')); // 731
