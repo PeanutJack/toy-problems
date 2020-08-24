@@ -11,6 +11,7 @@
  * @return {number}
  */
 var sumOfLeftLeaves = function(root, left) {
+  if (!root) return 0;
   let leaf = root.left === null && root.right === null;
   if (leaf && left) {
     return root.val;
