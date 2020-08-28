@@ -1,4 +1,8 @@
-var rand7 = () => Math.ceil(Math.random() * 7);
+let calls = 0;
+var rand7 = () => {
+  calls++;
+  return Math.ceil(Math.random() * 7);
+}
 
 
   // first solution is to run it 10 times then divide the answer by 10
@@ -37,8 +41,10 @@ var rand10 = function() {
   }
 };
 
+let flips = [];
 var coinFlip = function() {
   let coin;
+  let count = 0;
   while (coin === undefined) {
     let flip = rand7();
     if (flip > 4) {
@@ -46,23 +52,37 @@ var coinFlip = function() {
     } else if (flip < 4) {
       coin = false;
     }
+    count++;
   }
+  flips.push(count);
   return coin;
 }
 
+let fives = [];
 var rand5 = function() {
   let output;
+  let count = 0;
   while (output === undefined) {
     let temp = rand7();
     if (temp < 6) output = temp;
+    count++;
   }
+  fives.push(count);
   return output;
 }
 
 rand10();
 
 var output = [];
-for (var i = 0; i < 20; i++) {
-  output.push(rand10());
+let counts = {};
+for (var i = 0; i < 100000; i++) {
+  let temp = rand10();
+  output.push(temp);
+  counts[temp] ? counts[temp]++ : counts[temp] = 1;
 }
-console.log(output);
+// console.log(output);
+console.log(counts);
+console.log(output.reduce((a, c) => a + c) / output.length);
+console.log(flips.reduce((a, c) => a + c) / flips.length);
+console.log(fives.reduce((a, c) => a + c) / fives.length);
+console.log(calls / output.length);
