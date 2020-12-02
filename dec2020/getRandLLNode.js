@@ -22,6 +22,11 @@
  */
 var Solution = function(head) {
   this.head = head;
+  this.length = 0;
+  while (head) {
+    head = head.next;
+    length++;
+  }
 };
 
 /**
@@ -30,13 +35,7 @@ var Solution = function(head) {
  */
 Solution.prototype.getRandom = function() {
   let head = this.head;
-  let length = 0;
-  while (head) {
-    head = head.next;
-    length++;
-  }
   let rand = Math.floor(Math.random() * length);
-  head = this.head;
   while (rand > 0) {
     rand--;
     head = head.next;
