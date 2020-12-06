@@ -51,3 +51,54 @@ var connect = function(root) {
 };
 
 // Could not find the constant space solution, but even the pros in slack didn't get to it either
+
+
+// The following is NOT MY SOLUTION, just one I found in leetcode submissions
+
+/*
+var connect = function(root) {
+    let curr = root;
+    let leftmost = null;
+    let next = null;
+
+    // whenever this while loop restarts, we're going down a level
+    while (curr) {
+        // whenever this loop restarts, we're going to the next node to the right
+        while (curr) {
+            // the first node in a horizontal traversal gets set to leftmost
+            // following nodes get set to next of the previous node
+            if (curr.left) {
+                if (next)
+                    next.next = curr.left;
+                else
+                    leftmost = curr.left;
+
+                next = curr.left;
+            }
+
+            if (curr.right) {
+                if (next)
+                    next.next = curr.right;
+                else
+                    leftmost = curr.right;
+
+                next = curr.right;
+            }
+            // change current node to next one in horizontal layer
+            curr = curr.next;
+        }
+        // hitting this point means the horizontal row is exhausted
+        // the start of the next row is saved in leftmost
+        // other variables can be reset
+        curr = leftmost;
+        leftmost = null;
+        next = null;
+    }
+
+    return root;
+};
+*/
+
+// One of the things I was having difficulty keep track of was how do you move horizontallty through a tree
+  // Normally, you don't. You go up and then back down.
+  // BUT we are connecting them with the .next prop, so you CAN
