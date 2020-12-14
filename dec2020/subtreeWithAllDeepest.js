@@ -23,12 +23,12 @@ var subtreeWithAllDeepest = function(root) {
   let findDepth = function(node) {
     if (!node) return null;
     return 1 + Math.max(findDepth(node.left), findDepth(node.right));
-  }
+  };
   let compareDepths = function(node) {
     let leftD = findDepth(node.left);
     let rightD = findDepth(node.right);
     if (leftD === rightD) return node;
     return leftD > rightD ? compareDepths(node.left) : compareDepths(node.right);
-  }
+  };
   return compareDepths(root);
 };
