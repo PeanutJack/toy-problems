@@ -34,3 +34,24 @@ var fourSumCount = function(A, B, C, D) {
   arrAB.forEach(sum => objCD[sum] ? output += objCD[sum] : null);
   return output;
 };
+
+// the above code had a 400ms runtime on leetcode, 16% mem
+// faster solutions seemed to all have Map instead of an object, going to try it out
+
+var fourSumCount = function(A, B, C, D) {
+  let output = 0;
+  let arrAB = [];
+  let objCD = new Map();
+  for (let i = 0; i < A.length; i++) {
+    for (let j = 0; j < A.length; j++) {
+      arrAB.push(A[i] + B[j]);
+      let sum = -(C[i] + D[j]);
+      // objCD[sum] ? objCD[sum]++ : objCD[sum] = 1;
+      objCD.set(sum, (objCD.get(sum) || 0) + 1);
+    }
+  }
+  arrAB.forEach(sum => output += objCD.get(sum) || 0);
+  return output;
+};
+
+// Simply changing to Map reduced runtime to 160ms and improved mem to top 63%
